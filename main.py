@@ -1,5 +1,6 @@
 import os
 import tkinter
+from colorama import Fore, Back, Style
 
 def clear():
     os.system("cls")
@@ -12,38 +13,90 @@ def skipnumber(number):
         print(" ")
 def caps():
     skipnumber(2)
-    print("███╗░░░███╗░█████╗░████████╗░█████╗░██████╗░  ██████╗░░█████╗░░██████╗██╗████████╗██╗░█████╗░███╗░░██╗")
+    print(Fore.RED +"███╗░░░███╗░█████╗░████████╗░█████╗░██████╗░  ██████╗░░█████╗░░██████╗██╗████████╗██╗░█████╗░███╗░░██╗")
     print("████╗░████║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗  ██╔══██╗██╔══██╗██╔════╝██║╚══██╔══╝██║██╔══██╗████╗░██║")
     print("██╔████╔██║██║░░██║░░░██║░░░██║░░██║██████╔╝  ██████╔╝██║░░██║╚█████╗░██║░░░██║░░░██║██║░░██║██╔██╗██║")
     print("██║╚██╔╝██║██║░░██║░░░██║░░░██║░░██║██╔══██╗  ██╔═══╝░██║░░██║░╚═══██╗██║░░░██║░░░██║██║░░██║██║╚████║")
     print("██║░╚═╝░██║╚█████╔╝░░░██║░░░╚█████╔╝██║░░██║  ██║░░░░░╚█████╔╝██████╔╝██║░░░██║░░░██║╚█████╔╝██║░╚███║")
-    print("╚═╝░░░░░╚═╝░╚════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝  ╚═╝░░░░░░╚════╝░╚═════╝░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝")
+    print("╚═╝░░░░░╚═╝░╚════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝  ╚═╝░░░░░░╚════╝░╚═════╝░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝" + Style.RESET_ALL + Fore.BLUE)
     for x in range(6):
         print(" ")
-
 clear()
 caps()
 print("Enter CAN ID 1 bis 9")
-canbyid = input()
-print("Select: " + canbyid)
+
+while True:
+    try:
+        canbyid = int(input())
+        if 1 <= canbyid <= 9:
+            break
+        else:
+            clear()
+            caps()
+            print("Der Wert muss zwischen 1 und 9 liegen. Bitte erneut versuchen.")
+    except ValueError:
+        clear()
+        caps()
+        print("Ungültige Eingabe. Bitte eine Zahl zwischen 1 und 9 eingeben.")
+print("Select: " + str(canbyid))
 clear()
 caps()
 clear()
 caps()
 print("Enter Speed von 1 bis 3000")
-speedid = input()
-print("Select: " + speedid)
+
+while True:
+    try:
+        speedid = int(input())
+        if 1 <= speedid <= 9:
+            break
+        else:
+            clear()
+            caps()
+            print("Der Wert muss zwischen 1 bis 3000 liegen. Bitte erneut versuchen.")
+    except ValueError:
+        clear()
+        caps()
+        print("Ungültige Eingabe. Bitte eine Zahl zwischen 1 bis 3000 eingeben.")
+print("Select: " + str(speedid))
 clear()
 caps()
 print("Enter Acceralition 1 bis 255")
-acceralitionid = input()
-print("Select: " + acceralitionid)
+
+while True:
+    try:
+        acceralitionid = int(input())
+        if 1 <= acceralitionid <= 255:
+            break
+        else:
+            clear()
+            caps()
+            print("Der Wert muss zwischen 1 und 255 liegen. Bitte erneut versuchen.")
+    except ValueError:
+        print("Ungültige Eingabe. Bitte eine Zahl zwischen 1 und 255 eingeben.")
+print("Select: " + str(acceralitionid))
 clear()
 caps()
 print("Enter Position 1 bis 16777215")
-positionid = input()
-print("Select: " + positionid)
+
+while True:
+    try:
+        positionid = int(input())
+        if 1 <= positionid <= 16777215:
+            break
+        else:
+            clear()
+            caps()
+            print("Der Wert muss zwischen 1 und 16777215 liegen. Bitte erneut versuchen.")
+    except ValueError:
+        clear()
+        caps()
+        print("Ungültige Eingabe. Bitte eine Zahl zwischen 1 und 16777215 eingeben.")
+print("Select: " + str(positionid))
 clear()
+
+
+
 speedidhex = hex(int(speedid))[2:]
 speedidnumbers = len(str(speedidhex))
 if speedidnumbers == 1:
@@ -59,9 +112,8 @@ acceralitionidhex = hex(int(acceralitionid))[2:]
 acceralitionidnumbers = len(str(acceralitionidhex))
 if acceralitionidnumbers == 1:
     acceralitionidenter = "0" + acceralitionidhex
-elif acceralitionidnumbers == 2:
+else:
     acceralitionidenter = acceralitionidhex
-
 
 positionidhex = hex(int(positionid))[2:]
 positionidnumbers = len(str(positionidhex))
@@ -114,8 +166,9 @@ elif checkidnumber == 8:
 caps()
 #last 2 of result so example = 2B5 --> B5
 print("======================================================")
-print(canbyidoutput + " " + modeidhex + " " + speedidenter + " " + acceralitionidenter + " " + positionidenter1 + " " + checkhex +"                  CRC: " + checkhexoutput)
+print(Style.RESET_ALL + Fore.RED + canbyidoutput + " " + modeidhex + " " + speedidenter + " " + acceralitionidenter + " " + positionidenter1 + " " + checkhex +"                  CRC: " + checkhexoutput + Fore.BLUE)
 print("======================================================")
+
 
 def append_to_file_if_needed(text, file_name, line_length):
     # Versuchen, die Datei im Lesemodus zu öffnen, um den bestehenden Inhalt zu lesen
@@ -124,22 +177,22 @@ def append_to_file_if_needed(text, file_name, line_length):
             existing_content = file.read()
     except FileNotFoundError:
         existing_content = ""
-
     # Öffnen der Datei im Anhängemodus ('a') zum Hinzufügen von Text
     with open(file_name, 'a', encoding='utf-8') as file:
         # Überprüfen, ob die Datei bereits Text enthält
         if existing_content:
             file.write('\n')  # Neue Zeile hinzufügen, falls bereits Text vorhanden ist
-
         # Text in Teile der Länge line_length aufteilen und hinzufügen
         for i in range(0, len(text), line_length):
             file.write(text[i:i+line_length] + '')
+
 
 text = canbyidoutput + " " + modeidhex + " " + speedidenter + " " + acceralitionidenter + " " + positionidenter1 + " " + checkhex + "  CRC: " + checkhexoutput
 file_name = "log.txt"
 line_length = 50
 append_to_file_if_needed(text, file_name, line_length)
-print(f"Text wurde erfolgreich in die Datei {file_name} geschrieben.")
+print(f"Text wurde erfolgreich in die Datei " + Style.RESET_ALL + Fore.RED + "log.txt" + Style.RESET_ALL + Fore.BLUE + " geschrieben.")
+print(f"Text wurde erfolgreich in die Datei " + Style.RESET_ALL + Fore.RED +"cangenerate.txt" + Style.RESET_ALL + Fore.BLUE +" geschrieben.")
 text = canbyidoutput + " " + modeidhex + " " + speedidenter + " " + acceralitionidenter + " " + positionidenter1 + " " + checkhex
 file_name = "cangenerate.txt"
 append_to_file_if_needed(text, file_name, line_length)
