@@ -138,11 +138,15 @@ def append_to_file_if_needed(text, file_name, line_length):
 text = canbyidoutput + " " + modeidhex + " " + speedidenter + " " + acceralitionidenter + " " + positionidenter1 + " " + checkhex + "  CRC: " + checkhexoutput
 file_name = "log.txt"
 line_length = 50
-
 append_to_file_if_needed(text, file_name, line_length)
 print(f"Text wurde erfolgreich in die Datei {file_name} geschrieben.")
-
+text = canbyidoutput + " " + modeidhex + " " + speedidenter + " " + acceralitionidenter + " " + positionidenter1 + " " + checkhex
+file_name = "cangenerate.txt"
+append_to_file_if_needed(text, file_name, line_length)
 skip()
+
+
+
 enter = input("Press Enter ")
 
 
