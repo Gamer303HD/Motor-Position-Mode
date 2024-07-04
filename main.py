@@ -1,6 +1,7 @@
 import os
 import sys
-import tkinter
+import tkinter as tk
+from tkinter import ttk
 from colorama import Fore, Back, Style
 import subprocess
 
@@ -32,6 +33,7 @@ def selectlogo():
         print("╚═════╝░╚══════╝╚══════╝╚══════╝░╚════╝░░░░╚═╝░░░")
         for x in range(2):
             print("")
+
 def selectinterface():
     clear()
     skipnumber(2)
@@ -55,9 +57,86 @@ def selectinterface():
     if(selectednummber == 1):
         terminal()
     elif(selectednummber == 2):
-        terminal()
+        gui()
     else:
         pass
+def gui():
+
+    # Hauptfenster erstellen
+    root = tk.Tk()
+    root.title("Motor Position")
+    root.geometry("500x400")
+    root.configure(bg="#f0f0f0")
+
+    # Titel Label
+    title_label = tk.Label(root, text="Motor Position", font=("Arial", 18, "bold"), bg="#f0f0f0", fg="#333")
+    title_label.pack(pady=20)
+
+    # Funktion zum Aktualisieren des Labels mit dem Wert des Sliders
+    def update_label(val, label, entry):
+        val = int(float(val))  # Nur ganze Zahlenwerte
+        
+        entry.delete(0, tk.END)
+        entry.insert(0, str(val))
+
+    # Funktion zum Aktualisieren des Sliders mit dem Wert aus dem Entry
+    def update_slider(entry, slider):
+        try:
+            val = int(entry.get())
+            slider.set(val)
+        except ValueError:
+            pass  # Ungültiger Wert wird ignoriert
+
+    # Stil für Entry-Widgets festlegen
+    style = ttk.Style()
+    style.configure("TEntry", padding=5)
+
+    # Erster Slider und Entry
+    frame1 = tk.Frame(root, bg="#f0f0f0")
+    frame1.pack(pady=10)
+    slider1 = tk.Scale(frame1, from_=1, to=9, orient="horizontal", command=lambda val: update_label(val, label1, entry1), length=200, bg="#f0f0f0", fg="#333")
+    slider1.pack(side="left", padx=10)
+    label1 = tk.Label(frame1, text="CAN ID       ", bg="#f0f0f0", fg="#333")
+    label1.pack(side="left", padx=10)
+    entry1 = ttk.Entry(frame1)
+    entry1.pack(side="left", padx=10)
+    entry1.bind("<Return>", lambda event: update_slider(entry1, slider1))
+    
+    # Zweiter Slider und Entry
+    frame2 = tk.Frame(root, bg="#f0f0f0")
+    frame2.pack(pady=10)
+    slider2 = tk.Scale(frame2, from_=1, to=3000, orient="horizontal", command=lambda val: update_label(val, label2, entry2), length=200, bg="#f0f0f0", fg="#333")
+    slider2.pack(side="left", padx=10)
+    label2 = tk.Label(frame2, text="Speed         ", bg="#f0f0f0", fg="#333")
+    label2.pack(side="left", padx=10)
+    entry2 = ttk.Entry(frame2)
+    entry2.pack(side="left", padx=10)
+    entry2.bind("<Return>", lambda event: update_slider(entry2, slider2))
+
+    # Dritter Slider und Entry
+    frame3 = tk.Frame(root, bg="#f0f0f0")
+    frame3.pack(pady=10)
+    slider3 = tk.Scale(frame3, from_=1, to=255, orient="horizontal", command=lambda val: update_label(val, label3, entry3), length=200, bg="#f0f0f0", fg="#333")
+    slider3.pack(side="left", padx=10)
+    label3 = tk.Label(frame3, text="Acceralition", bg="#f0f0f0", fg="#333")
+    label3.pack(side="left", padx=10)
+    entry3 = ttk.Entry(frame3)
+    entry3.pack(side="left", padx=10)
+    entry3.bind("<Return>", lambda event: update_slider(entry3, slider3))
+
+    # Vierter Slider und Entry
+    frame4 = tk.Frame(root, bg="#f0f0f0")
+    frame4.pack(pady=10)
+    slider4 = tk.Scale(frame4, from_=1, to=16777215, orient="horizontal", command=lambda val: update_label(val, label4, entry4), length=200, bg="#f0f0f0", fg="#333")
+    slider4.pack(side="left", padx=10)
+    label4 = tk.Label(frame4, text="Position     ", bg="#f0f0f0", fg="#333")
+    label4.pack(side="left", padx=10)
+    entry4 = ttk.Entry(frame4)
+    entry4.pack(side="left", padx=10)
+    entry4.bind("<Return>", lambda event: update_slider(entry4, slider4))
+
+    # Hauptschleife starten
+    root.mainloop()
 
 def terminal():
     clear()
@@ -182,7 +261,7 @@ def terminal():
 
 
 
-    check = int(canbyid) + int(speedid) + int(acceralitionid) + int(positionid) + 245
+    check = int(canbyid) + int(speedid) + int(acceralitionid) + int(positionid) + int(245)
     checkhex = hex(check)[2:]
     checkhexoutput = hex(check)
 
