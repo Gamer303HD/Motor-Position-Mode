@@ -66,10 +66,10 @@ def gui():
     root = tk.Tk()
     root.title("Motor Position")
     root.geometry("500x400")
-    root.configure(bg="#f0f0f0")
+    root.configure(bg="#cdc0af")
 
     # Titel Label
-    title_label = tk.Label(root, text="Motor Position", font=("Arial", 18, "bold"), bg="#f0f0f0", fg="#333")
+    title_label = tk.Label(root, text="Motor Position", font=("Arial", 18, "bold"), bg="#cdc0af", fg="#333")
     title_label.pack(pady=20)
 
     # Funktion zum Aktualisieren des Labels mit dem Wert des Sliders
@@ -92,44 +92,44 @@ def gui():
     style.configure("TEntry", padding=5)
 
     # Erster Slider und Entry
-    frame1 = tk.Frame(root, bg="#f0f0f0")
+    frame1 = tk.Frame(root, bg="#c3b6a3")
     frame1.pack(pady=10)
-    slider1 = tk.Scale(frame1, from_=1, to=9, orient="horizontal", command=lambda val: update_label(val, label1, entry1), length=200, bg="#f0f0f0", fg="#333")
+    slider1 = tk.Scale(frame1, from_=1, to=9, orient="horizontal", command=lambda val: update_label(val, label1, entry1), length=200, bg="#c3b6a3", fg="#333")
     slider1.pack(side="left", padx=10)
-    label1 = tk.Label(frame1, text="CAN ID       ", bg="#f0f0f0", fg="#333")
+    label1 = tk.Label(frame1, text="CAN ID       ", bg="#c3b6a3", fg="#333")
     label1.pack(side="left", padx=10)
     entry1 = ttk.Entry(frame1)
     entry1.pack(side="left", padx=10)
     entry1.bind("<Return>", lambda event: update_slider(entry1, slider1))
     
     # Zweiter Slider und Entry
-    frame2 = tk.Frame(root, bg="#f0f0f0")
+    frame2 = tk.Frame(root, bg="#c3b6a3")
     frame2.pack(pady=10)
-    slider2 = tk.Scale(frame2, from_=1, to=3000, orient="horizontal", command=lambda val: update_label(val, label2, entry2), length=200, bg="#f0f0f0", fg="#333")
+    slider2 = tk.Scale(frame2, from_=1, to=3000, orient="horizontal", command=lambda val: update_label(val, label2, entry2), length=200, bg="#c3b6a3", fg="#333")
     slider2.pack(side="left", padx=10)
-    label2 = tk.Label(frame2, text="Speed         ", bg="#f0f0f0", fg="#333")
+    label2 = tk.Label(frame2, text="Speed         ", bg="#c3b6a3", fg="#333")
     label2.pack(side="left", padx=10)
     entry2 = ttk.Entry(frame2)
     entry2.pack(side="left", padx=10)
     entry2.bind("<Return>", lambda event: update_slider(entry2, slider2))
 
     # Dritter Slider und Entry
-    frame3 = tk.Frame(root, bg="#f0f0f0")
+    frame3 = tk.Frame(root, bg="#c3b6a3")
     frame3.pack(pady=10)
-    slider3 = tk.Scale(frame3, from_=1, to=255, orient="horizontal", command=lambda val: update_label(val, label3, entry3), length=200, bg="#f0f0f0", fg="#333")
+    slider3 = tk.Scale(frame3, from_=1, to=255, orient="horizontal", command=lambda val: update_label(val, label3, entry3), length=200, bg="#c3b6a3", fg="#333")
     slider3.pack(side="left", padx=10)
-    label3 = tk.Label(frame3, text="Acceralition", bg="#f0f0f0", fg="#333")
+    label3 = tk.Label(frame3, text="Acceralition", bg="#c3b6a3", fg="#333")
     label3.pack(side="left", padx=10)
     entry3 = ttk.Entry(frame3)
     entry3.pack(side="left", padx=10)
     entry3.bind("<Return>", lambda event: update_slider(entry3, slider3))
 
     # Vierter Slider und Entry
-    frame4 = tk.Frame(root, bg="#f0f0f0")
+    frame4 = tk.Frame(root, bg="#c3b6a3")
     frame4.pack(pady=10)
-    slider4 = tk.Scale(frame4, from_=1, to=16777215, orient="horizontal", command=lambda val: update_label(val, label4, entry4), length=200, bg="#f0f0f0", fg="#333")
+    slider4 = tk.Scale(frame4, from_=1, to=16777215, orient="horizontal", command=lambda val: update_label(val, label4, entry4), length=200, bg="#c3b6a3", fg="#333")
     slider4.pack(side="left", padx=10)
-    label4 = tk.Label(frame4, text="Position     ", bg="#f0f0f0", fg="#333")
+    label4 = tk.Label(frame4, text="Position     ", bg="#c3b6a3", fg="#333")
     label4.pack(side="left", padx=10)
     entry4 = ttk.Entry(frame4)
     entry4.pack(side="left", padx=10)
